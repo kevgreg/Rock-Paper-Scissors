@@ -18,6 +18,7 @@ function computerPlay(){
     }
 }
 
+//Prompts the player for input
 function getPlayerInput(){
     let input = prompt().toLowerCase();
     return input;
@@ -25,12 +26,14 @@ function getPlayerInput(){
 
 //Plays 1 round of the game
 function playRound(playerSelection, computerSelection){
-    //console.log(playerSelection + " " + computerSelection);
 
+    //Defines the message for the result of the game
     const win = `You win! ${playerSelection} beats ${computerSelection}`;
     const lose = `You Lose! ${computerSelection} beats ${playerSelection}`;
     const tie = `You tied! ${playerSelection} equals ${computerSelection}`;
+    const invalidInput = `${playerSelection} is not a valid input. Please try again.`;
     
+    //Switch statement for player selections
     switch(playerSelection){
         case "rock":
             if(computerSelection == "Rock"){
@@ -62,10 +65,14 @@ function playRound(playerSelection, computerSelection){
             else{
                 return tie;
             }
+         default:
+             return invalidInput;
     }
 }
 
-playRound(getPlayerInput(), computerPlay());
+function game()
+
+console.log(playRound(getPlayerInput(), computerPlay()));
 
 
 
