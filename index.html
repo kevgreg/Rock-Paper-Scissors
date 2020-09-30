@@ -18,7 +18,55 @@ function computerPlay(){
     }
 }
 
-console.log(computerPlay());
+function getPlayerInput(){
+    let input = prompt().toLowerCase();
+    return input;
+}
+
+//Plays 1 round of the game
+function playRound(playerSelection, computerSelection){
+    //console.log(playerSelection + " " + computerSelection);
+
+    const win = `You win! ${playerSelection} beats ${computerSelection}`;
+    const lose = `You Lose! ${computerSelection} beats ${playerSelection}`;
+    const tie = `You tied! ${playerSelection} equals ${computerSelection}`;
+    
+    switch(playerSelection){
+        case "rock":
+            if(computerSelection == "Rock"){
+                return tie;
+            }
+            else if(computerSelection == "Paper"){
+                return lose;
+            }
+            else{
+                return win;
+            }
+        case "paper":
+            if(computerSelection == "Rock"){
+                return win;
+            }
+            else if(computerSelection == "Paper"){
+                return tie;
+            }
+            else{
+                return lose;
+            }
+        case "scissors":
+            if(computerSelection == "Rock"){
+                return lose;
+            }
+            else if(computerSelection == "Paper"){
+                return win;
+            }
+            else{
+                return tie;
+            }
+    }
+}
+
+playRound(getPlayerInput(), computerPlay());
+
 
 
 </script>
