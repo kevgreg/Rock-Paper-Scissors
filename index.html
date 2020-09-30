@@ -3,6 +3,9 @@
 
 <script>
 
+let playerScore = 0;
+let computerScore = 0;
+
 //Randomly returns Rock, Paper, or Scissors
 function computerPlay(){
     let computerChoice = Math.floor(Math.random() * 3);
@@ -40,26 +43,32 @@ function playRound(playerSelection, computerSelection){
                 return tie;
             }
             else if(computerSelection == "Paper"){
+                computerScore ++;
                 return lose;
             }
             else{
+                playerScore ++;
                 return win;
             }
         case "paper":
             if(computerSelection == "Rock"){
+                playerScore++;
                 return win;
             }
             else if(computerSelection == "Paper"){
                 return tie;
             }
             else{
+                computerScore++;
                 return lose;
             }
         case "scissors":
             if(computerSelection == "Rock"){
+                computerScore++;
                 return lose;
             }
             else if(computerSelection == "Paper"){
+                playerScore++;
                 return win;
             }
             else{
@@ -70,9 +79,22 @@ function playRound(playerSelection, computerSelection){
     }
 }
 
-function game()
+//Plays game 5 times and outputs score
+function game(){
 
-console.log(playRound(getPlayerInput(), computerPlay()));
+
+    console.log(playRound(getPlayerInput(), computerPlay()));
+    console.log(playRound(getPlayerInput(), computerPlay()));
+    console.log(playRound(getPlayerInput(), computerPlay()));
+    console.log(playRound(getPlayerInput(), computerPlay()));
+    console.log(playRound(getPlayerInput(), computerPlay()));
+
+    console.log(`Player wins: ${playerScore}`);
+    console.log(`Computer wins: ${computerScore}`);
+    console.log("Ties: " + (5-(playerScore + computerScore)))
+}
+
+game();
 
 
 
