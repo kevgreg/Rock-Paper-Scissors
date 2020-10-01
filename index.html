@@ -3,10 +3,7 @@
 
 <script>
 
-let playerScore = 0;
-let computerScore = 0;
-
-//Randomly returns Rock, Paper, or Scissors
+//Function to randomly returns Rock, Paper, or Scissors for computer input
 function computerPlay(){
     let computerChoice = Math.floor(Math.random() * 3);
 
@@ -21,15 +18,15 @@ function computerPlay(){
     }
 }
 
-//Prompts the player for input and validates it
+//Function to prompt the player for input and validates it
 function getPlayerInput(){
-
+    //get player input
     let input = prompt("Enter Rock, Paper, or Scissors").toLowerCase();
-
+    //validate player input
     if(input == "rock" || input == "paper" || input == "scissors"){
             return input;
     }
-    else{
+    else{//keep prompting player until input is valid
         while(true){
             let input = prompt("Invalid input. Please enter Rock, Paper, or Scissors").toLowerCase();
             if(input == "rock" || input == "paper" || input == "scissors"){
@@ -39,7 +36,7 @@ function getPlayerInput(){
     }
 }
 
-//Plays 1 round of the game
+//Function to plays 1 round of the game
 function playRound(playerSelection, computerSelection){
 
     //Defines the message for the result of the game
@@ -49,30 +46,46 @@ function playRound(playerSelection, computerSelection){
     
     //if player wins
     if(playerSelection == "rock" && computerSelection == "scissors" || playerSelection == "scissors" && computerSelection == "paper" || playerSelection == "paper" && computerSelection == "rock"){
-        playerScore++;
-        return win;
+        console.log(win);
+        return "win";
     }//if player ties
     else if(playerSelection == computerSelection){
-        return tie;
+        console.log(tie);
+        return "tie";
     }//if player loses
     else{
-        computerScore++;
-        return lose;
+        console.log(lose);
+        return "lose";
     }
 }
 
-//Plays game 5 times and outputs score
+//Function to play game 5 times and outputs score
 function game(){
-
+    //score variables
+    let playerScore = 0;
+    let computerScore = 0;
+    let ties = 0;
+    //plays 5 rounds and keeps score
     for (let i = 0; i < 5; i++){
-        console.log(playRound(getPlayerInput(), computerPlay()));
-    }
 
+        let play = playRound(getPlayerInput(), computerPlay());
+
+        if(play == "win"){
+            playerScore++;
+        }
+        else if(play == "lose"){
+            computerScore++;
+        }
+        else if(play == "tie"){
+            ties++;
+        }
+    }
+    //output results
     console.log(`Player wins: ${playerScore}`);
     console.log(`Computer wins: ${computerScore}`);
-    console.log("Ties: " + (5-(playerScore + computerScore)))
+    console.log("Ties: " + ties)
 }
-
+//starts game
 game();
 
 </script>
